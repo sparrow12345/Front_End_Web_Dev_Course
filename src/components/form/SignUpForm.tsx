@@ -61,6 +61,7 @@ const SignUpForm = () => {
     if (response.ok) {
       router2.push("/sign-in");
     } else {
+      // console.log(response);
       toast({
         title: "Error",
         description: "Something went wrong!",

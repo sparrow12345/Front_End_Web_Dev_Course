@@ -6,7 +6,6 @@ import Task from "./Task";
 const TodoList = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [filteredTasks, setFilteredTasks] = useState<ITask[]>([]);
-  const [filter, setFilter] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTasks = async () => {

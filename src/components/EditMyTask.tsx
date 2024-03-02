@@ -3,6 +3,7 @@ import { ITask, TaskStatus } from "@/types/tasks";
 import { ChangeEvent, FormEventHandler, useState } from "react";
 import { editTodo } from "@/components/api";
 import { Radio } from "@material-tailwind/react";
+import { useToast } from "./ui/use-toast";
 
 interface TaskProps {
   task: ITask;
@@ -21,6 +22,7 @@ const EditMyTask: React.FC<TaskProps> = ({ task }) => {
     image: defaultImage,
   } = task;
 
+  const { toast } = useToast();
   const [taskToEdit, setTaskToEdit] = useState<string>(name);
   const [taskDetailsToEdit, setTaskDetailsToEdit] =
     useState<string>(description);
@@ -31,7 +33,7 @@ const EditMyTask: React.FC<TaskProps> = ({ task }) => {
   const [error, setError] = useState<string>("");
 
   const [image, setImage] = useState<string>(
-    new TextDecoder().decode(Buffer.from(defaultImage)),
+    new TextDecoder().decode(Buffer.from(defaultImage))
   );
   const [preview, setPreview] = useState<string>("");
   const [color, setColor] = useState<string>(defaultColor); // default color
@@ -56,10 +58,20 @@ const EditMyTask: React.FC<TaskProps> = ({ task }) => {
   const handleSubmitEditTodo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (taskToEdit.trim() === "") {
-      setError("No Name?!");
+      setError("");
+      toast({
+        title: "Name is required",
+        description: "Please don't leave the name empty",
+        variant: "destructive",
+      });
       return;
     } else if (taskDetailsToEdit.trim() === "") {
-      setError("No Details?!");
+      setError("");
+      toast({
+        title: "Description is required",
+        description: "Please don't leave the Description empty",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -102,10 +114,7 @@ const EditMyTask: React.FC<TaskProps> = ({ task }) => {
         <h4>Due Date:</h4>
         <input
           type="date"
-          value={
-            taskDetailsToEdit &&
-            new Date(taskDueDateToEdit).toISOString().split("T")[0]
-          }
+          value={new Date(taskDueDateToEdit).toISOString().split("T")[0]}
           onChange={(e) => setTaskDueDateToEdit(e.target.value)}
           className="input input-bordered w-full bg-gray-300"
         />
@@ -183,7 +192,7 @@ const EditMyTask: React.FC<TaskProps> = ({ task }) => {
             Edit Task
           </button>
         </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
       </form>
     </main>
   );

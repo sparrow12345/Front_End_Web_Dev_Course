@@ -42,7 +42,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   }, [task.image]);
 
   return (
-    <tr key={task.id} style={{ backgroundColor: task.color, opacity: 0.8 }}>
+    <tr key={task.id} style={{ backgroundColor: task.color, opacity: 0.7 }}>
       <td className="w-full text-black ">
         <div className={`flex gap-2 justify-start text-center items-center`}>
           <div>
@@ -66,12 +66,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
           {task.name}
         </div>
       </td>
-      <td
-        className=" text-white "
-        style={{ backgroundColor: task.color, opacity: 0.8 }}
-      >
-        {task.status}
-      </td>
+      <td className=" text-white ">{task.status}</td>
       <td className="flex gap-2 items-center p-8">
         <FiInfo
           className="text-blue-500"
@@ -93,10 +88,6 @@ const Task: React.FC<TaskProps> = ({ task }) => {
           className="text-red-500"
           size={25}
         />
-        {/* <button onClick={toggleExpansion} className='text-red-500'>
-          {isExpanded ? 'Hide details' : 'Show details'}
-        </button> */}
-        <p className="text-black">{isExpanded ? task.description : ""}</p>
         <Modal modalOpen={openModalDeleted} setModalOpen={setOpenModalDeleted}>
           <h3 className="text-lg text-black">
             Are you sure, you want to delete this task?

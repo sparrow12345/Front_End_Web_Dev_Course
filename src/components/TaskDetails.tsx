@@ -13,7 +13,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ task }) => {
   useEffect(() => {
     const textDecoder = new TextDecoder();
     const imageUrl = textDecoder.decode(
-      Buffer.from(task.image) as unknown as ArrayBuffer,
+      Buffer.from(task.image) as unknown as ArrayBuffer
     );
     if (imageUrl !== "//") setImageUrl(imageUrl);
   }, [task.image]);
@@ -37,8 +37,8 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ task }) => {
             src={imageUrl}
             alt={name}
             className="mt-2 max-w-full rounded"
-            width={200}
-            height={200}
+            width={300}
+            height={300}
           />
         )}
         <div className="mt-4">

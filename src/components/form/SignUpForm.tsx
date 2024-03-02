@@ -49,7 +49,7 @@ const SignUpForm = () => {
   // const router2: NextRouter = useRouter();
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    // console.log(values);
+    console.log(values);
     const response = await fetch("/api/user/id", {
       method: "POST",
       body: JSON.stringify({

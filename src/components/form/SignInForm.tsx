@@ -59,49 +59,7 @@ const SignInForm = () => {
       router1.push("/mytasks");
       router1.refresh();
     }
-
-    // if (signInData?.error || signInData?.message) {
-    //   console.log(signInData.error);
-    //   console.log(signInData?.message);
-    // } else {
-    //   router1.push("/")
-    // }
-    // const hashed = await hash(values.password, 10);
-    // const response = await fetch("http://localhost:3000/api/(auth)/[...nextauth])", {
-    //   method: "POST",
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     "email": values.email,
-    //     "password": values.password
-    //   })
-    // })
-    // const result = await response.json();
-    // console.log(result);
-    // if (response.status == 200) {
-    //   const data = await response.json();
-    //   console.log(data);
-    //   const token = data.token;
-    //   // router1.push(`/?token=${token}`);
-    // }
   };
-
-  // const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-  //   // console.log(values);
-  //   const signInData = await signIn("credentials", {
-  //       "email": values.email,
-  //       "password": values.password
-  //     }
-  //   );
-  //   console.log(signInData);
-  //   // if (signInData?.error) {
-  //   //   console.log(signInData.error);
-  //   // } else {
-  //   //   console.log('ksm')
-  //   //   router1.push('/about');
-  //   // }
-  // };
 
   return (
     <Form {...form}>

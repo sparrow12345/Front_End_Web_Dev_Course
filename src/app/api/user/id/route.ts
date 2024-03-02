@@ -32,9 +32,10 @@ const UserSchema = z.object({
 
 export async function POST(req: Request) {
   try {
+    console.log("Here");
     const body = await req.json();
     const { email, username, password } = UserSchema.parse(body);
-
+    console.log(email);
     const existingUserByEmail = await db.user.findUnique({
       where: { email: email },
     });
@@ -70,6 +71,7 @@ export async function POST(req: Request) {
       { status: 201 }
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "Something went wrong" },
       { status: 500 }

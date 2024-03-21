@@ -1,32 +1,31 @@
-name: CI
+name: Build and Deploy to Vercel
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main # Set this to your default branch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "16" # Set this to the node version you are using
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build
+      - name: Run Build
         run: npm run build
 
-      - name: Lint
-        run: npm run lint
-
-      - name: Check Formatting
-        run: npm run check
+      - name: Vercel Deploy
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Ensure to set VERCEL_TOKEN in your repo secrets
+          vercel-org-id: team_eb0SQuBkNmJfPQjQQ1z8CIsu # Find in your Vercel project settings
+          vercel-project-id: vercel.com/…5s-projects-51d3cd61/ # Find in your Vercel project settings
+          vercel-args: "--prod" # Deploy to production

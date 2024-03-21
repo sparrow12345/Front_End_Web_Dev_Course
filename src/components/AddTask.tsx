@@ -14,7 +14,7 @@ import { TaskStatus } from "@/types/tasks";
 import { Radio } from "@material-tailwind/react";
 
 interface Props {
-  id: string;
+  username: string;
 }
 
 const convertBase64 = (file) => {
@@ -30,8 +30,8 @@ const convertBase64 = (file) => {
   });
 };
 
-const AddTask: React.FC<Props> = ({ id }) => {
-  const router = useRouter();
+const AddTask: React.FC<Props> = ({ username }) => {
+  // const router = useRouter();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newTaskValue, setNewTaskValue] = useState<string>("");
   const [newTaskDetails, setNewTaskDetails] = useState<string>("");
@@ -160,7 +160,7 @@ const AddTask: React.FC<Props> = ({ id }) => {
         }}
         className="btn btn-primary w-full text-white"
       >
-        Add new task <AiOutlinePlus className="ml-2" size={18} />
+        Add new task {username} <AiOutlinePlus className="ml-2" size={18} />
       </button>
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <form id="2" onSubmit={handleSubmitNewTodo} className="space-y-2">

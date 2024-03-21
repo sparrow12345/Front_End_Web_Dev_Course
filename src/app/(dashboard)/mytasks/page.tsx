@@ -14,7 +14,7 @@ export default async function mytasks() {
           <div className="text-center my-5 flex flex-row-reverse ">
             {/* <h1 className='text-2xl font-bold text-black'>Todo List App</h1> */}
 
-            <AddTask id={session.user.id} />
+            <AddTask username={session.user.username} />
           </div>
           <TodoList />
         </div>

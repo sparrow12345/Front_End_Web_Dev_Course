@@ -1,21 +1,3 @@
-// import { NextResponse } from "next/server";
-// import { db } from "@/lib/db";
-
-// export async function GET(req: Request, {params}: {params: {username: string, password: string}}) {
-
-//     const username = params.username
-
-//     const user = await db.user.findFirst( {where: { username: {equals: username} }} )
-//     if (user == null) {
-//         return NextResponse.json({user:null, message: "User does not exist!"})
-//     }
-//     if (user.password === params.password) {
-//         return NextResponse.json({id: user.id, username: user.username, password: user.password})
-//     } else {
-//         return NextResponse.json({id: user.id, message: "Wrong password!"})
-//     }
-// }
-
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import * as z from "zod";
@@ -32,10 +14,10 @@ const UserSchema = z.object({
 
 export async function POST(req: Request) {
   try {
-    console.log("Here");
+    // console.log("Here");
     const body = await req.json();
     const { email, username, password } = UserSchema.parse(body);
-    console.log(email);
+    // console.log(email);
     const existingUserByEmail = await db.user.findUnique({
       where: { email: email },
     });

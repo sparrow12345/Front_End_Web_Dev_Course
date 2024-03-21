@@ -47,11 +47,11 @@ const SignInForm = () => {
       redirect: false,
     });
     // console.log(session);
-    console.log(signInData);
+    // console.log(signInData);
     if (signInData?.error) {
       toast({
         title: "Error",
-        description: "Something went wrong!",
+        description: signInData.error,
         variant: "destructive",
       });
     } else {

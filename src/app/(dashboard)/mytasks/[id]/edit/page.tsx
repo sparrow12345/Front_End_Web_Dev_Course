@@ -25,7 +25,6 @@ export default function Page({ params }: { params: { id: string } }) {
       <div className="max-w-2xl mx-auto pt-20">
         {loading && <span>Loading...</span>}
         {!!task && <EditMyTask task={task} />}
-        {/* {!!!task && !loading && <span>Not found!</span>} */}
       </div>
     </main>
   );

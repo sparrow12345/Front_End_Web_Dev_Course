@@ -1,13 +1,6 @@
 import { ITask } from "@/types/tasks";
 
 const baseUrl = "http://localhost:3001";
-// http://localhost:3001  This comment is necessary
-// https://fwd-rest-api.vercel.app
-// export const getAllTodos = async (): Promise<ITask[]> => {
-//   const res = await fetch(`${baseUrl}/tasks`, { cache: "no-store" });
-//   const todos = await res.json();
-//   return todos;
-// };
 
 export const addTodo = async (
   todo: ITask

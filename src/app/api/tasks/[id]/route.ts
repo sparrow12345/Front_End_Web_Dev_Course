@@ -2,12 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { ITask } from "@/types/tasks";
-import { NextApiRequest } from "next";
 
 export async function GET(req, { params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
-  const userId = session.user.id;
 
   const task = await db.tasks.findFirst({
     where: {
@@ -17,7 +14,6 @@ export async function GET(req, { params }: { params: { id: string } }) {
       id: parseInt(params.id),
     },
   });
-  // console.log(task);
   return NextResponse.json({ task });
 }
 

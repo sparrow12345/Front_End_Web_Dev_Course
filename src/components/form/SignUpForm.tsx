@@ -64,7 +64,7 @@ const SignUpForm = () => {
       console.log(response);
       toast({
         title: "Error",
-        description: response.json(),
+        description: "I can't sign up. An account is connected to this email",
         variant: "destructive",
       });
     }

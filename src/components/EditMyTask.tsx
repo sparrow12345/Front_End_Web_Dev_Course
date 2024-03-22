@@ -4,6 +4,7 @@ import { ChangeEvent, FormEventHandler, useState } from "react";
 import { editTodo } from "@/components/api";
 import { Radio } from "@material-tailwind/react";
 import { useToast } from "./ui/use-toast";
+import Image from "next/image";
 
 interface TaskProps {
   task: ITask;
@@ -147,7 +148,7 @@ const EditMyTask: React.FC<TaskProps> = ({ task }) => {
           className="input input-bordered w-full bg-gray-300 p-2"
         />
         {preview && (
-          <img
+          <Image
             src={preview}
             alt="Preview"
             className="w-32 h-32 object-cover mt-2"

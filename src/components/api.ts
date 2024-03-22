@@ -1,14 +1,14 @@
-import { ITask } from "@/types/tasks";
+import { ITask } from '@/types/tasks';
 
-const baseUrl = "http://localhost:3001";
+const baseUrl = 'http://localhost:3001';
 
 export const addTodo = async (
   todo: ITask
 ): Promise<ITask | { error: string }> => {
   const res = await fetch(`/api/tasks`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(todo),
   });
@@ -23,9 +23,9 @@ export const addTodo = async (
 export const editTodo = async (todo: ITask): Promise<boolean> => {
   // console.log(todo);
   const res = await fetch(`/api/tasks/${todo.id}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(todo),
   });
@@ -39,7 +39,7 @@ export const editTodo = async (todo: ITask): Promise<boolean> => {
 
 export const deleteTodo = async (id: string): Promise<boolean> => {
   const res = await fetch(`/api/tasks/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
   });
   if (res.ok) {
     const data = await res.json();
@@ -51,8 +51,8 @@ export const deleteTodo = async (id: string): Promise<boolean> => {
 
 export const getToDo = async (id: string): Promise<ITask | null> => {
   const res = await fetch(`/api/tasks/${id}`, {
-    cache: "no-store",
-    method: "GET",
+    cache: 'no-store',
+    method: 'GET',
   });
   const task = await res.json();
   return task.task || null;

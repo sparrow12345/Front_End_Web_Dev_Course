@@ -1,7 +1,7 @@
-"use client";
-import { ITask } from "@/types/tasks";
-import React, { useEffect, useState } from "react";
-import Task from "./Task";
+'use client';
+import { ITask } from '@/types/tasks';
+import React, { useEffect, useState } from 'react';
+import Task from './Task';
 
 const TodoList = () => {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -9,7 +9,7 @@ const TodoList = () => {
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const response = await fetch("/api/tasks");
+      const response = await fetch('/api/tasks');
       const data = await response.json();
       setTasks(data.tasks);
       setFilteredTasks(data.tasks);
@@ -19,7 +19,7 @@ const TodoList = () => {
 
   const handleFilterChange = (status: string | null) => {
     // console.log(status);
-    if (status == "All") {
+    if (status == 'All') {
       setFilteredTasks(tasks);
       return;
     }
@@ -32,26 +32,26 @@ const TodoList = () => {
   };
 
   return (
-    <div className="overflow-x-auto max-w-2xl w-full mx-auto">
-      <div className="mb-4">
-        {" "}
+    <div className='mx-auto w-full max-w-2xl overflow-x-auto'>
+      <div className='mb-4'>
+        {' '}
         {/* Adjust margin as needed */}
-        <label className="mr-2 text-black">Filter by Status:</label>{" "}
+        <label className='mr-2 text-black'>Filter by Status:</label>{' '}
         {/* Adjust margin as needed */}
         <select
-          className="p-2 border border-gray-300 rounded-md text-sm outline-none"
+          className='rounded-md border border-gray-300 p-2 text-sm outline-none'
           onChange={(e) => handleFilterChange(e.target.value)}
         >
           <option value={null}>All</option>
-          <option value="Todo">Todo</option>
-          <option value="InProgress">InProgress</option>
-          <option value="Done">Done</option>
+          <option value='Todo'>Todo</option>
+          <option value='InProgress'>InProgress</option>
+          <option value='Done'>Done</option>
         </select>
       </div>
 
-      <table className="table">
+      <table className='table'>
         <thead>
-          <tr className="text-black">
+          <tr className='text-black'>
             <th>Tasks</th>
             <th>Status</th>
             <th>Actions</th>

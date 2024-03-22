@@ -1,15 +1,15 @@
-import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { ITask } from "@/types/tasks";
+import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { ITask } from '@/types/tasks';
 
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
     const newTask = (await req.json()) as ITask;
     if (!session) {
-      return new NextResponse(JSON.stringify({ error: "Not authenticated" }), {
+      return new NextResponse(JSON.stringify({ error: 'Not authenticated' }), {
         status: 401,
       });
     }
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
     // Validate input
     if (!newTask.name || !newTask.description) {
       return new NextResponse(
-        JSON.stringify({ error: "Missing required fields" }),
+        JSON.stringify({ error: 'Missing required fields' }),
         { status: 400 }
       );
     }

@@ -1,30 +1,30 @@
-import { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { db } from "./db";
-import { compare } from "bcrypt";
-import { NextResponse } from "next/server";
+import { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { db } from './db';
+import { compare } from 'bcrypt';
+import { NextResponse } from 'next/server';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   pages: {
-    signIn: "/sign-in",
+    signIn: '/sign-in',
   },
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: "Credentials",
+      name: 'Credentials',
       // The credentials is used to generate a suitable form on the sign in page.
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        email: { label: "email", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'email', type: 'text', placeholder: 'jsmith' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials): Promise<any> {
         // You need to provide your own logic here that takes the credentials
@@ -50,7 +50,7 @@ export const authOptions: NextAuthOptions = {
 
         const passwordMatch = await compare(
           credentials.password,
-          existingUser.password,
+          existingUser.password
         );
         if (passwordMatch) {
           return {

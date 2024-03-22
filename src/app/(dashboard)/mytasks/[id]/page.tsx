@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { getToDo } from "@/components/api";
-import MyTask from "@/components/EditMyTask";
-import TaskDetails from "@/components/TaskDetails";
-import { ITask } from "@/types/tasks";
-import { useEffect, useState } from "react";
+import { getToDo } from '@/components/api';
+import MyTask from '@/components/EditMyTask';
+import TaskDetails from '@/components/TaskDetails';
+import { ITask } from '@/types/tasks';
+import { useEffect, useState } from 'react';
 
 export default function Page({ params }: { params: { id: string } }) {
   const [task, setTask] = useState<ITask | null>(null);
@@ -21,8 +21,8 @@ export default function Page({ params }: { params: { id: string } }) {
   }, [params.id]);
 
   return (
-    <main className=" mx-auto  min-h-screen bg-zinc-100 w-full text-black">
-      <div className="max-w-2xl mx-auto pt-20">
+    <main className=' mx-auto  min-h-screen w-full bg-zinc-100 text-black'>
+      <div className='mx-auto max-w-2xl pt-20'>
         {loading && <span>Loading...</span>}
         {!!task && <TaskDetails task={task} />}
       </div>

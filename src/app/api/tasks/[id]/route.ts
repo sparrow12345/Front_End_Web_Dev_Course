@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 export async function GET(req, { params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
@@ -21,7 +21,7 @@ export async function DELETE(req, { params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
 
   if (session.user == undefined) {
-    return new NextResponse(JSON.stringify({ error: "Unauthorized" }), {
+    return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), {
       status: 401,
     });
   }
@@ -35,11 +35,11 @@ export async function DELETE(req, { params }: { params: { id: string } }) {
     },
   });
   if (task.id == undefined) {
-    return NextResponse.json({ message: "Not Found" }, { status: 404 });
+    return NextResponse.json({ message: 'Not Found' }, { status: 404 });
   }
 
   await db.tasks.delete({ where: { id: task.id } });
-  return NextResponse.json({ message: "done" });
+  return NextResponse.json({ message: 'done' });
 }
 
 export async function POST(
@@ -51,7 +51,7 @@ export async function POST(
 
   // Check if the user is authenticated
   if (!session || !session.user) {
-    return new NextResponse(JSON.stringify({ error: "Unauthorized" }), {
+    return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), {
       status: 401,
     });
   }
@@ -70,7 +70,7 @@ export async function POST(
 
   // Check if the task exists
   if (!task) {
-    return NextResponse.json({ message: "Task not found" }, { status: 404 });
+    return NextResponse.json({ message: 'Task not found' }, { status: 404 });
   }
 
   // Update the task

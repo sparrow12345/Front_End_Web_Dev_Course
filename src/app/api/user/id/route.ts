@@ -1,15 +1,15 @@
-import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import * as z from "zod";
-import { hash } from "bcrypt";
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import * as z from 'zod';
+import { hash } from 'bcrypt';
 
 const UserSchema = z.object({
-  username: z.string().min(1, "Username is required").max(100),
-  email: z.string().min(1, "Email is required").email("Invalid email"),
+  username: z.string().min(1, 'Username is required').max(100),
+  email: z.string().min(1, 'Email is required').email('Invalid email'),
   password: z
     .string()
-    .min(1, "Password is required")
-    .min(8, "Password must have than 8 characters"),
+    .min(1, 'Password is required')
+    .min(8, 'Password must have than 8 characters'),
 });
 
 export async function POST(req: Request) {
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
 
     if (existingUserByEmail) {
       return NextResponse.json(
-        { user: null, message: "User already exists!" },
+        { user: null, message: 'User already exists!' },
         { status: 409 }
       );
     }
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
     if (existingUserByUsername) {
       return NextResponse.json(
-        { user: null, message: "User with this username already exists!" },
+        { user: null, message: 'User with this username already exists!' },
         { status: 409 }
       );
     }
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(
-      { user: newUser, message: "User created successfully!" },
+      { user: newUser, message: 'User created successfully!' },
       { status: 201 }
     );
   } catch (error) {

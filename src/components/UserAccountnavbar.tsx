@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import { Button, buttonVariants } from "./ui/button";
-import { signOut } from "next-auth/react";
+'use client';
+import React from 'react';
+import { Button, buttonVariants } from './ui/button';
+import { signOut } from 'next-auth/react';
 
 const UserAccountnavbar = () => {
   return (
@@ -10,10 +10,10 @@ const UserAccountnavbar = () => {
       onClick={() => {
         signOut({
           redirect: true,
-          callbackUrl: "/",
+          callbackUrl: '/',
         });
       }}
-      variant="destructive"
+      variant='destructive'
     >
       Sign Out
     </Button>
